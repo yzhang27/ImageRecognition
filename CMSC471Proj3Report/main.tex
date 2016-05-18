@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{gensymb}
+
+\title{University of Maryland Baltimore County \\
+CMSC 447 - Artificial Intelligence \\
+Project 3 Image Recognition \\
+Prof. Maksym Morawski}
+\author{Ying Zhang }
+\date{May 15, 2016}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+The purpose of this paper is to provide a explanation of the approach that is used to solve the image recognition problem and the accuracy of this program. 
+
+\section{Problem}
+
+Given a path to a single image file, which can be any of the following, a smiley face, hat, hash, heart, or dollar sign, the program should be able to identify which category does it belong to.
+
+\section{Approach}
+\subsection{Training Set}
+For the consistency of the training sets, couple minor adjustments are made to serveral image files in the given data set. In the folder "01" of the given data set, the file "01.png" was converted to "01.jpg". In addtion, the "08.jpg" in the folder "02", was rotated 90$^{\circ}$ clockwise to match the formats of the rest of files within the folder.
+
+\subsection{Algorithm}
+This problem can be solved by supervised learning, more specifically, by Support Vector Machine(SVM). SVMs are supervised learning models that uses given training data to output an optimal hyperplane that categorizes the test data. This program uses OpenCV library to perform image recognition tasks. OpenCV library is an open-source computer vision library that includes several thousand computer vision algorithms.The first step taken to solve this problem is to convert all of the training images into pixels and put it in a matrix, the training matrix. The rows of the matrix equals to the total number of training images, and the columns of the training matrix equals to the dimension of a single training image, in this case 100 X 100 = 10,000. Upon the success of constructing a training matrix, next step would be construct an array that contains a list of image labels corresponding to the training matrix. Since both training matrix and its corresponding labels are constructed, the last step would be put it into a SVM and have it train the training set. In order to predict the label for each test image, test image need to be converted to a matrix, the test matrix. Now, the SVM object can take in the test matrix and predict the label for it.
+
+\section{Accuracy}
+
+Accuracy of this image recognition program is calculated by dividing the total number of testing images by the number of correct prediction. \\
+
+\begin{tabular}{l|c|r}
+Number of Testing Images & Number of Correct Predictions & Accuracy(\%) \\ \hline
+100 & 77 & 77%
+\end{tabular}
+
+Note: When performing predictions on \"\#\" symbols, it tends to have a lower accuracy than performing predictions on the rest of the symbols.
+
+\section{Reference}
+\begin{itemize}
+\item http://docs.opencv.org/
+\item http://answers.opencv.org/question/63715/svm-java-opencv-3/
+\item http://answers.opencv.org/question/70600/i-want-to-use-opencv-3-in-java-with-facerecognition/
+\item https://en.wikibooks.org/wiki/LaTeX
+\end{itemize}
+
+
+\end{document}
